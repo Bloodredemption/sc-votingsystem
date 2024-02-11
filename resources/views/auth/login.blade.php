@@ -7,9 +7,10 @@
         <div class="col-lg-7 text-center text-lg-start">
             
             {{-- <p style="text-align: justify; text-justify: inter-word;" class="col-lg-10 fs-4">an innovative online platform tailored specifically for student councils. Our user-friendly interface simplifies the voting process, enabling students to cast their votes conveniently and securely from anywhere.</p> --}}
-            <img src="{{ URL('images/login-illustration.svg') }}" alt="Council Cast Illustration" style="max-width: 430px; height: auto; left: 30px; display: block; margin-left: auto; margin-right: auto; width: 60%;">
+            <img src="{{ URL('images/login-illustration.svg') }}" alt="Council Cast Illustration" style="max-width: 430px; height: auto; left: 30px; display: block; margin-left: auto; margin-right: auto; width: 100%;">
             
-            <h4 style="display: block; margin-left: auto; margin-right: auto; width: 50%;">Digital Voting System</h4>
+            <h4 style="display: block; margin-left: auto; margin-right: auto; width: 50%; text-align: center; color: #555; font-size: 18px; font-weight: normal;">Digital Voting System</h4>
+
         </div>
         <br><br>
         <div class="col-md-10 mx-auto col-lg-5">
@@ -21,7 +22,7 @@
                 <div class="form-floating mb-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class='bx bx-id-card'></i></span> <!-- Email icon -->
-                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="studIDstudID" name="loginID" value="{{ old('loginID') }}" placeholder="Student ID">
+                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="studIDstudID" name="loginID" value="{{ old('loginID') }}" placeholder="Enter Student ID">
                         @if ($errors->has('loginID'))
                             <div class="invalid-feedback">{{ $errors->first('loginID') }}</div> <!-- Error message with Bootstrap error style -->
                         @endif
