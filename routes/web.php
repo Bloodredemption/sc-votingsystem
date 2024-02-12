@@ -25,4 +25,7 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
+    // Route::get('/admin/login', 'adminLogin')->name('adminLogin');
 });
+
+Route::get('/personnel/login', [LoginRegisterController::class, 'personnelLogin'])->name('personnel.login');

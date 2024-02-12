@@ -17,27 +17,27 @@
             <form class="p-4 p-md-5 border rounded-3 bg-light" action="{{ route('authenticate') }}" method="post">
                 @csrf
                 <div class="col-lg-10 fs-8 fw-bold">
-                    VOTER
+                    PERSONNEL
                 </div>
                 <h1 class="display-8 fw-bold lh-1 mb-3">
                     Login
                     <div class="float-end">
-                        <a href="{{ route('personnel.login') }}" class="btn btn-primary btn-sm">Personnel &rarr;</a>
-                    </div>
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-sm">&rarr; Voter</a>
+                    </div>                    
                 </h1>
                 
                 <hr class="my-4">
                 <div class="form-floating mb-3">
                     <div class="input-group">
-                        <span class="input-group-text"><i class='bx bx-id-card'></i></span> <!-- Email icon -->
-                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="studIDstudID" name="loginID" value="{{ old('loginID') }}" placeholder="Enter Student ID">
+                        <span class="input-group-text"><i class='bx bxs-user-circle'></i></span> <!-- Email icon -->
+                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="studIDstudID" name="loginID" value="{{ old('loginID') }}" placeholder="Enter Username">
                         @if ($errors->has('loginID'))
                             <div class="invalid-feedback">{{ $errors->first('loginID') }}</div> <!-- Error message with Bootstrap error style -->
                         @endif
                     </div>
                     
                 </div>
-                {{-- <div class="form-floating mb-3">
+                <div class="form-floating mb-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class='bx bxs-lock'></i></span> <!-- Password icon -->
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="•••••••">
@@ -45,7 +45,7 @@
                             <div class="invalid-feedback">{{ $errors->first('password') }}</div> <!-- Error message with Bootstrap error style -->
                         @endif
                     </div>
-                </div> --}}
+                </div>
                 {{-- <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me

@@ -67,6 +67,11 @@ class LoginRegisterController extends Controller
         return view('auth.login');
     }
 
+    public function personnelLogin()
+    {
+        return view('auth.personnel.login');
+    }
+
     /**
      * Authenticate the user.
      *
