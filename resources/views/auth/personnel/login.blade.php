@@ -6,7 +6,7 @@
     <div class="row align-items-center g-lg-5 py-5">
         
         <div class="col-md-10 mx-auto col-lg-5">
-            <form class="p-4 p-md-5 border rounded-3 bg-light" action="{{ route('authenticate') }}" method="post">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" action="{{ route('personnel.authenticate') }}" method="post">
                 @csrf
                 <div class="col-lg-10 fs-8 fw-bold">
                     PERSONNEL
@@ -22,9 +22,9 @@
                 <div class="form-floating mb-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class='bx bxs-user-circle'></i></span> <!-- Email icon -->
-                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="studIDstudID" name="loginID" value="{{ old('loginID') }}" placeholder="Enter Username">
-                        @if ($errors->has('loginID'))
-                            <div class="invalid-feedback">{{ $errors->first('loginID') }}</div> <!-- Error message with Bootstrap error style -->
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" placeholder="Enter Username">
+                        @if ($errors->has('username'))
+                            <div class="invalid-feedback">{{ $errors->first('username') }}</div> <!-- Error message with Bootstrap error style -->
                         @endif
                     </div>
                     

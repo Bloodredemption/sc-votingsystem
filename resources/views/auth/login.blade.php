@@ -30,7 +30,7 @@
                 <div class="form-floating mb-3">
                     <div class="input-group">
                         <span class="input-group-text"><i class='bx bx-id-card'></i></span> <!-- Email icon -->
-                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="studIDstudID" name="loginID" value="{{ old('loginID') }}" placeholder="Enter Student ID">
+                        <input type="loginID" class="form-control @error('loginID') is-invalid @enderror" id="loginID" name="loginID" value="{{ old('loginID') }}" placeholder="Enter Student ID">
                         @if ($errors->has('loginID'))
                             <div class="invalid-feedback">{{ $errors->first('loginID') }}</div> <!-- Error message with Bootstrap error style -->
                         @endif

@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="{{ asset('css/sticky-footer.css') }}" rel="stylesheet">
 
     <style>
         .input-group-text {
@@ -58,11 +57,12 @@
                 @else    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            @if(session()->has('fullName'))
-                                {{ session('fullName') }}
+                            @if(session()->has('personnelName'))
+                                {{ session('personnelName') }}
                             @elseif(Auth::check())
                                 {{ Auth::user()->name }}
                             @endif
+
                         </a>
                         <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('logout') }}"

@@ -29,3 +29,5 @@ Route::controller(LoginRegisterController::class)->group(function() {
 });
 
 Route::get('/personnel/login', [LoginRegisterController::class, 'personnelLogin'])->name('personnel.login');
+Route::post('/personnel/login', [LoginRegisterController::class, 'personnelauthenticate'])->name('personnel.authenticate');
+Route::get('/personnel/admin/dashboard', [LoginRegisterController::class, 'adminDashboard'])->name('personnel.admin.dashboard');
