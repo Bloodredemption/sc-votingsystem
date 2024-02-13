@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\PersonnelsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::controller(LoginRegisterController::class)->group(function() {
     // Route::get('/admin/login', 'adminLogin')->name('adminLogin');
 });
 
-Route::get('/personnel/login', [LoginRegisterController::class, 'personnelLogin'])->name('personnel.login');
-Route::post('/personnel/login', [LoginRegisterController::class, 'personnelauthenticate'])->name('personnel.authenticate');
-Route::get('/personnel/admin/dashboard', [LoginRegisterController::class, 'adminDashboard'])->name('personnel.admin.dashboard');
+Route::get('/personnel/login', [PersonnelsController::class, 'personnelLogin'])->name('personnel.login');
+Route::post('/personnel/login', [PersonnelsController::class, 'personnelauthenticate'])->name('personnel.authenticate');
+Route::get('/personnel/admin/dashboard', [PersonnelsController::class, 'adminDashboard'])->name('personnel.admin.dashboard');
+Route::get('/personnel/facilitator/dashboard', [PersonnelsController::class, 'facilitatorDashboard'])->name('personnel.facilitator.dashboard');
+
+// Route::post('/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
+Route::match(['get', 'post'], '/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');

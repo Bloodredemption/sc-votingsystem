@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Models\Personnel;
+use App\Models\Personnels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -68,10 +68,10 @@ class LoginRegisterController extends Controller
         return view('auth.login');
     }
 
-    public function personnelLogin()
-    {
-        return view('auth.personnel.login');
-    }
+    // public function personnelLogin()
+    // {
+    //     return view('auth.personnel.login');
+    // }
 
     /**
      * Authenticate the user.
@@ -110,41 +110,42 @@ class LoginRegisterController extends Controller
         return back()->withErrors(['loginID' => 'Your provided credentials do not match in our records.']);
     }
 
-    public function personnelauthenticate(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
+    // public function personnelauthenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
 
-        // Check if personnel with the provided username exists
-        $personnel = Personnel::where('username', $credentials['username'])->first();
+    //     // Check if personnel with the provided username exists
+    //     $personnel = Personnel::where('username', $credentials['username'])->first();
 
-        if ($personnel) {
-            // Personnel with username exists
-            if ($credentials['password'] === $personnel->password) {
-                // Password matches
+    //     if ($personnel) {
+    //         // Personnel with username exists
+    //         if ($credentials['password'] === $personnel->password) {
+    //             // Password matches
 
-                if ($personnel->userType === 'admin') {
-                    // User is an admin, redirect to admin dashboard
-                    return redirect()->route('personnel.admin.dashboard');
-                } elseif ($personnel->userType === 'facilitator') {
-                    // User is a facilitator, redirect to facilitator dashboard
-                    return redirect()->route('personnel.facilitator.dashboard');
-                }
-            }
-        }
+    //             if ($personnel->userType === 'admin') {
+    //                 // User is an admin, redirect to admin dashboard
+    //                 return redirect()->route('personnel.admin.dashboard');
+    //             } elseif ($personnel->userType === 'facilitator') {
+    //                 // User is a facilitator, redirect to facilitator dashboard
+    //                 return redirect()->route('personnel.facilitator.dashboard');
+    //             }
+    //         }
+    //     }
 
-        // Username, password, or userType is incorrect, redirect back with error message
-        return back()->withErrors(['username' => 'Invalid username, password, or user type.']);
-    }
+    //     // Username, password, or userType is incorrect, redirect back with error message
+    //     return back()->withErrors(['username' => 'Invalid username, password, or user type.']);
+    // }
 
-    public function adminDashboard()
-    {
-        // Add logic for the admin dashboard here
-        return view('auth.personnel.admin.dashboard'); // For example, return the admin dashboard view
-    }
-    
+    // public function adminDashboard()
+    // {
+    //     // Add logic for the admin dashboard here
+    //     return view('auth.personnel.admin.dashboard'); // For example, return the admin dashboard
+
+    // }
+        
     /**
      * Display a dashboard to authenticated users.
      *
@@ -161,7 +162,7 @@ class LoginRegisterController extends Controller
             ->withErrors([
             'loginID' => 'Please login to access the dashboard.',
         ])->onlyInput('loginID');
-    } 
+    }
     
     /**
      * Log out the user from application.
