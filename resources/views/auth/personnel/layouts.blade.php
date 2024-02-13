@@ -10,7 +10,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="{{ asset('css/sticky-footer.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
-    
+
     <style>
         .input-group-text {
             background-color: white; /* Set background color to transparent */
@@ -22,7 +22,12 @@
         }
 
         /* Style for email input when active */
-        #loginID:focus {
+        #username:focus {
+            border-color: #007bff; /* Change border color when active */
+            box-shadow: 0 0 0 0.10rem rgba(0,123,255,.25); /* Add box shadow when active */
+        }
+
+        #password:focus {
             border-color: #007bff; /* Change border color when active */
             box-shadow: 0 0 0 0.10rem rgba(0,123,255,.25); /* Add box shadow when active */
         }
