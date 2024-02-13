@@ -47,11 +47,39 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link active" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnel.admin.dashboard') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
                 <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#" aria-expanded="false">
+                <span>
+                  <i class="ti ti-list-check"></i>
+                </span>
+                <span class="hide-menu">Votes</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Manage</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#" aria-expanded="false">
+                <span>
+                  <i class="ti ti-circle-check"></i>
+                </span>
+                <span class="hide-menu">Election</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu">Voters</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -62,22 +90,26 @@
                 <span class="hide-menu">Candidates</span>
               </a>
             </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Manage</span>
-            </li>
             
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link active" href="{{ route('personnels.index') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-users"></i>
+                  <i class="ti ti-user-circle"></i>
                 </span>
-                <span class="hide-menu">Voters</span>
+                <span class="hide-menu">Personnels</span>
               </a>
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Others</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#" aria-expanded="false">
+                <span>
+                  <i class="ti ti-report-analytics"></i>
+                </span>
+                <span class="hide-menu">Reports</span>
+              </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="#" aria-expanded="false">
@@ -121,7 +153,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
-                @if ($message = Session::get('success'))
+                {{-- @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         {{ $message }}
                     </div>
@@ -129,7 +161,7 @@
                     <div class="alert alert-success">
                         You are logged in!
                     </div>
-                @endif
+                @endif --}}
           </div>
         </div>
       </div>

@@ -36,3 +36,5 @@ Route::get('/personnel/facilitator/dashboard', [PersonnelsController::class, 'fa
 
 // Route::post('/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
 Route::match(['get', 'post'], '/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
+
+Route::get('/personnel/admin/personnels', 'App\Http\Controllers\PersonnelsController@index')->name('personnels.index');

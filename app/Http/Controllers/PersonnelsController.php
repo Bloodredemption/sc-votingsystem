@@ -15,7 +15,7 @@ class PersonnelsController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.personnel.admin.personnels');
     }
 
     /**
@@ -85,7 +85,7 @@ class PersonnelsController extends Controller
             // Personnel with username exists
             if ($credentials['password'] === $personnel->password) {
                 // Password matches
-                $fullName = $personnel->first_name . ' ' . $personnel->last_name;
+                $fullName = $personnel->name;
                 session(['fullName' => $fullName]);
 
                 if ($personnel->userType === 'admin') {
@@ -102,23 +102,39 @@ class PersonnelsController extends Controller
         return back()->withErrors(['username' => 'Invalid username, password, or user type.']);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('personnel.login');
     }
-
+ 
     public function adminDashboard()
     {
-        // Add logic for the admin dashboard here
-        return view('auth.personnel.admin.dashboard'); // For example, return the admin dashboard
+        // if (Auth::check()) {
+        //     return view('auth.personnel.admin.dashboard');
+        // }
 
+        return view('auth.personnel.admin.dashboard');
+
+        // return redirect()->route('personnel.login')
+        //     ->withErrors([
+        //         'username' => 'Please login to access the dashboard.',
+        //     ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
     }
 
     public function facilitatorDashboard()
     {
-        // Add logic for the admin dashboard here
-        return view('auth.personnel.facilitator.dashboard'); // For example, return the admin dashboard
+        // if (Auth::check()) {
+        //     return view('auth.personnel.facilitator.dashboard');
+        // }
 
+        return view('auth.personnel.facilitator.dashboard');
+        
+        // return redirect()->route('personnel.login')
+        //     ->withErrors([
+        //         'username' => 'Please login to access the dashboard.',
+        //     ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
     }
 }
