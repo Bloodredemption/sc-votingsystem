@@ -73,11 +73,12 @@ class PersonnelsController extends Controller
 
     public function personnelauthenticate(Request $request)
     {
+
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-
+ 
         // Check if personnel with the provided username exists
         $personnel = Personnels::where('username', $credentials['username'])->first();
 
@@ -86,9 +87,12 @@ class PersonnelsController extends Controller
             if ($credentials['password'] === $personnel->password) {
                 // Password matches
                 $fullName = $personnel->name;
-                session(['fullName' => $fullName]);
-
+                $status = $personnel->status;
+                session(['fullName' => $fullName]);  
+                session(['status' => $status]);  
+               
                 if ($personnel->userType === 'admin') {
+                   
                     // User is an admin, redirect to admin dashboard
                     return redirect()->route('personnel.admin.dashboard');
                 } elseif ($personnel->userType === 'facilitator') {
@@ -99,7 +103,10 @@ class PersonnelsController extends Controller
         }
 
         // Username, password, or userType is incorrect, redirect back with error message
-        return back()->withErrors(['username' => 'Invalid username, password, or user type.']);
+        return back()->withErrors([
+            'username' => 'Invalid username.',
+            'password' => 'Invalid password.'
+        ]);
     }
 
     public function logout(Request $request)
@@ -111,30 +118,29 @@ class PersonnelsController extends Controller
     }
  
     public function adminDashboard()
-    {
-        // if (Auth::check()) {
-        //     return view('auth.personnel.admin.dashboard');
-        // }
+    { 
+        if (session()->has('fullName')) {
+            return view('auth.personnel.admin.dashboard');
+        }
 
-        return view('auth.personnel.admin.dashboard');
-
-        // return redirect()->route('personnel.login')
-        //     ->withErrors([
-        //         'username' => 'Please login to access the dashboard.',
-        //     ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
+        return redirect()->route('personnel.login')
+            ->withErrors([
+                'username' => 'Please login to access the dashboard.',
+            ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
+        
     }
 
     public function facilitatorDashboard()
     {
-        // if (Auth::check()) {
-        //     return view('auth.personnel.facilitator.dashboard');
-        // }
+        if (session()->has('fullName')) {
+            return view('auth.personnel.facilitator.dashboard');
+        }
 
-        return view('auth.personnel.facilitator.dashboard');
+        return redirect()->route('personnel.login')
+            ->withErrors([
+                'username' => 'Please login to access the dashboard.',
+            ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
         
-        // return redirect()->route('personnel.login')
-        //     ->withErrors([
-        //         'username' => 'Please login to access the dashboard.',
-        //     ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
     }
+    
 }
