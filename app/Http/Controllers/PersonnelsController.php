@@ -17,6 +17,38 @@ class PersonnelsController extends Controller
     {
         return view('auth.personnel.admin.personnels');
     }
+    
+    public function votesIndex()
+    {
+        return view('auth.personnel.admin.votes');
+    }
+
+    public function electionIndex()
+    {
+        return view('auth.personnel.admin.election');
+    }
+
+    public function votersIndex()
+    {
+        return view('auth.personnel.admin.voters');
+    }
+
+    public function candidatesIndex()
+    {
+        return view('auth.personnel.admin.candidates');
+    }
+
+    public function reportsIndex()
+    {
+        return view('auth.personnel.admin.reports');
+    }
+
+    public function aboutIndex()
+    {
+        return view('auth.personnel.admin.about');
+    }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -141,6 +173,21 @@ class PersonnelsController extends Controller
                 'username' => 'Please login to access the dashboard.',
             ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
         
+    }
+    
+    public function faciAbout()
+    {
+        return view('auth.personnel.facilitator.about');
+    }
+
+    public function faciVoters()
+    {
+        return view('auth.personnel.facilitator.voters');
+    }
+
+    public function faciCandidates()
+    {
+        return view('auth.personnel.facilitator.candidates');
     }
     
 }

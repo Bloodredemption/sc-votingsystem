@@ -55,7 +55,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnels.votes') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-list-check"></i>
                 </span>
@@ -67,7 +67,7 @@
               <span class="hide-menu">Manage</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnels.election') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-circle-check"></i>
                 </span>
@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnels.voters') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
                 </span>
@@ -83,7 +83,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnels.candidates') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-user-check"></i>
                 </span>
@@ -104,7 +104,7 @@
               <span class="hide-menu">Others</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnels.reports') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-report-analytics"></i>
                 </span>
@@ -112,7 +112,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnels.about') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-info-circle"></i>
                 </span>
@@ -139,7 +139,7 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">System / Dashboard</span>
+              <span class="hide-menu">System / Personnels</span>
             </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -152,27 +152,22 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
-                {{-- @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ $message }}
-                    </div>
-                @else
-                    <div class="alert alert-success">
-                        You are logged in!
-                    </div>
-                @endif --}}
+            <h5 class="card-title fw-semibold mb-4">Admin</h5>
+                
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Facilitator</h5>
+                
           </div>
         </div>
       </div>
 
     </div>
   </div>
-  <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-  {{-- <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script> --}}
-  <script src="{{ asset('assets/js/app.min.js') }}"></script>
-  <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
+  @include('auth.personnel.scripts')
 </body>
 
 </html>

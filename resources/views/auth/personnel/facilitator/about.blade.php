@@ -47,7 +47,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link active" href="{{ route('personnel.faci.dashboard') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('personnel.faci.dashboard') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
@@ -80,7 +80,7 @@
               <span class="hide-menu">Others</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ route('personnel.faci.about') }}" aria-expanded="false">
+              <a class="sidebar-link active" href="{{ route('personnel.faci.about') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-info-circle"></i>
                 </span>
@@ -107,7 +107,7 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">System / Dashboard</span>
+              <span class="hide-menu">System / About</span>
             </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -120,7 +120,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Dashboard</h5>
+            <h5 class="card-title fw-semibold mb-4">About</h5>
                 {{-- @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         {{ $message }}

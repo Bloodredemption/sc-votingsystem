@@ -16,7 +16,7 @@ use App\Http\Controllers\PersonnelsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
   
     Route::controller(LoginRegisterController::class)->group(function() {
@@ -32,12 +32,21 @@ Route::get('/', function () {
     Route::get('/personnel/login', [PersonnelsController::class, 'personnelLogin'])->name('personnel.login');
 
     Route::post('/personnel/login_authenticate', [PersonnelsController::class, 'personnelauthenticate'])->name('personnel.authenticate');
-    Route::get('/personnel/admin/dashboard', [PersonnelsController::class, 'adminDashboard'])->name('personnel.admin.dashboard');
-    Route::get('/personnel/facilitator/dashboard', [PersonnelsController::class, 'facilitatorDashboard'])->name('personnel.facilitator.dashboard');
-
+    Route::get('/admin/dashboard', [PersonnelsController::class, 'adminDashboard'])->name('personnel.admin.dashboard');
     
-    Route::get('/personnel/admin/personnels', 'App\Http\Controllers\PersonnelsController@index')->name('personnels.index');
- 
+    Route::get('/facilitator/dashboard', [PersonnelsController::class, 'facilitatorDashboard'])->name('personnel.faci.dashboard');
+    Route::get('/facilitator/candidates', [PersonnelsController::class, 'faciCandidates'])->name('personnel.faci.candidates');
+    Route::get('/facilitator/voters', [PersonnelsController::class, 'faciVoters'])->name('personnel.faci.voters');
+    Route::get('/facilitator/about', [PersonnelsController::class, 'faciAbout'])->name('personnel.faci.about');
 
+    Route::get('/admin/votes', [PersonnelsController::class, 'votesIndex'])->name('personnels.votes');
+    Route::get('/admin/personnels', 'App\Http\Controllers\PersonnelsController@index')->name('personnels.index');
+    Route::get('/admin/election', [PersonnelsController::class, 'electionIndex'])->name('personnels.election');
+    Route::get('/admin/voters', [PersonnelsController::class, 'votersIndex'])->name('personnels.voters');
+    Route::get('/admin/candidates', [PersonnelsController::class, 'candidatesIndex'])->name('personnels.candidates');
+    Route::get('/admin/reports', [PersonnelsController::class, 'reportsIndex'])->name('personnels.reports');
+    Route::get('/admin/about', [PersonnelsController::class, 'aboutIndex'])->name('personnels.about');
+    
+    
 // Route::post('/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
 Route::match(['get', 'post'], '/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
