@@ -7,14 +7,30 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use DataTables;
+use App\DataTables\PersonnelsDataTable;
 
 class PersonnelsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PersonnelsDataTable $dataTable)
     {
+        // return view('auth.personnel.admin.personnels');
+        // return $dataTable->render('auth.personnel.admin.personnels');
+
+        if(\request()->ajax()){
+            $data = Personnels::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('auth.personnel.admin.personnels');
     }
     
@@ -47,7 +63,6 @@ class PersonnelsController extends Controller
     {
         return view('auth.personnel.admin.about');
     }
-
     
 
     /**

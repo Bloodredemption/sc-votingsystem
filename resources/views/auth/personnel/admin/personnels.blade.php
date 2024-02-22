@@ -7,6 +7,9 @@
   <title>CouncilCast: Digital Voting System | Admin</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+  {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+  <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
+  <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">  
   
 </head>
 
@@ -153,7 +156,17 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Admin</h5>
-                
+            <table id="myTable" class="table table-bordered">
+              <thead class="table-dark">
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Username</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -167,7 +180,12 @@
 
     </div>
   </div>
+
+  {{-- @push('scripts')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+  @endpush --}}
+
   @include('auth.personnel.scripts')
 </body>
-
+{{-- @stack('scripts') --}}
 </html>
