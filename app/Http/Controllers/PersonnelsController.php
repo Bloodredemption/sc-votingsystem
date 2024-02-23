@@ -8,60 +8,59 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
-use App\DataTables\PersonnelsDataTable;
 
 class PersonnelsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(PersonnelsDataTable $dataTable)
+    public function index()
     {
-        // return view('auth.personnel.admin.personnels');
+        return view('admin.personnels.index');
         // return $dataTable->render('auth.personnel.admin.personnels');
 
-        if(\request()->ajax()){
-            $data = Personnels::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-        return view('auth.personnel.admin.personnels');
+        // if(\request()->ajax()){
+        //     $data = Personnels::latest()->get();
+        //     return DataTables::of($data)
+        //         ->addIndexColumn()
+        //         ->addColumn('action', function($row){
+        //             $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+        //             return $actionBtn;
+        //         })
+        //         ->rawColumns(['action'])
+        //         ->make(true);
+        // }
+        // return view('auth.personnel.admin.personnels');
     }
     
     public function votesIndex()
     {
-        return view('auth.personnel.admin.votes');
+        return view('admin.votes.index');
     }
 
     public function electionIndex()
     {
-        return view('auth.personnel.admin.election');
+        return view('admin.election.index');
     }
 
     public function votersIndex()
     {
-        return view('auth.personnel.admin.voters');
+        return view('admin.voters.index');
     }
 
     public function candidatesIndex()
     {
-        return view('auth.personnel.admin.candidates');
+        return view('admin.candidates.index');
     }
 
     public function reportsIndex()
     {
-        return view('auth.personnel.admin.reports');
+        return view('admin.reports.index');
     }
 
     public function aboutIndex()
     {
-        return view('auth.personnel.admin.about');
+        return view('admin.about.index');
     }
     
 
@@ -167,7 +166,7 @@ class PersonnelsController extends Controller
     public function adminDashboard()
     { 
         if (session()->has('fullName')) {
-            return view('auth.personnel.admin.dashboard');
+            return view('admin.dashboard.index');
         }
 
         return redirect()->route('personnel.login')
@@ -180,7 +179,7 @@ class PersonnelsController extends Controller
     public function facilitatorDashboard()
     {
         if (session()->has('fullName')) {
-            return view('auth.personnel.facilitator.dashboard');
+            return view('personnel.facilitator.dashboard');
         }
 
         return redirect()->route('personnel.login')

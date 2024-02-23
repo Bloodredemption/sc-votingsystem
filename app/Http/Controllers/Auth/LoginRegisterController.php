@@ -155,7 +155,7 @@ class LoginRegisterController extends Controller
     {
         if(Auth::check())
         {
-            return view('auth.dashboard');
+            return view('voter.dashboard');
         }
         
         return redirect()->route('login')
