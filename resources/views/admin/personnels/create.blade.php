@@ -1,13 +1,22 @@
 @extends('admin.layouts')
-  
+@extends('admin.profile')
+
 @section('content')
-<div class="row">
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Facilitator</h5>
+            
+    </div>
+</div>
+
+    <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>Add New Admin</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('personnels.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,8 +32,8 @@
     </div>
 @endif
    
-<form action="{{ route('products.store') }}" method="POST">
-    @csrf
+<form action="" method="POST">
+    <!-- @csrf -->
   
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

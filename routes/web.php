@@ -51,3 +51,4 @@ Route::get('/', function () {
 Route::match(['get', 'post'], '/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
 
 // Route::resource('personnels', PersonnelsController::class);
+Route::get('/admin/personnels/create', [PersonnelsController::class, 'create'])->name('admin.personnels.create');

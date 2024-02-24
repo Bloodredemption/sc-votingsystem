@@ -160,7 +160,7 @@
           <div class="card-body">
             <h5 class="card-title fw-semibold">Admin</h5>
             <div class="pull-left">
-              <a class="btn btn-success" href=""> Create New Admin</a>
+              <a class="btn btn-success" href="{{ route('admin.personnels.create') }}"> Create New Admin</a>
             </div>
             <br>
             <table class="table table-bordered">
