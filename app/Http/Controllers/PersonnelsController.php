@@ -7,32 +7,27 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use DataTables;
+use Illuminate\View\View;
 
 class PersonnelsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('admin.personnels.index');
-        // return $dataTable->render('auth.personnel.admin.personnels');
-
-        // if(\request()->ajax()){
-        //     $data = Personnels::latest()->get();
-        //     return DataTables::of($data)
-        //         ->addIndexColumn()
-        //         ->addColumn('action', function($row){
-        //             $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-        //             return $actionBtn;
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->make(true);
-        // }
-        // return view('auth.personnel.admin.personnels');
-    }
+    // public function index()
+    // {
+    //     return view('admin.personnels.index');
+        
+    // }
     
+    public function index(): View
+    {
+        $personnels = Personnels::latest()->paginate(5);
+        
+        return view('admin.personnels.index',compact('personnels'))
+                    ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     public function votesIndex()
     {
         return view('admin.votes.index');
@@ -67,9 +62,9 @@ class PersonnelsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.personnels.create');
     }
 
     /**
@@ -85,7 +80,7 @@ class PersonnelsController extends Controller
      */
     public function show(Personnels $personnels)
     {
-        //
+        return view('products.show',compact('product'));
     }
 
     /**

@@ -11,6 +11,9 @@
   <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
   <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">  
   
+  <style>
+    
+  </style>
 </head>
 
 <body>
@@ -155,18 +158,53 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Admin</h5>
-            {{-- <table id="myTable" class="table table-bordered">
-              <thead class="table-dark">
-                  <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Username</th>
-                  </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table> --}}
+            <h5 class="card-title fw-semibold">Admin</h5>
+            <div class="pull-left">
+              <a class="btn btn-success" href=""> Create New Admin</a>
+            </div>
+            <br>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th width="280px">Action</th>
+                </tr>
+                @foreach ($personnels as $personnel)
+                <tr>
+                    <td>{{ $personnel->name }}</td>
+                    <td>{{ $personnel->username }}</td>
+                    <td>{{ $personnel->password }}</td>
+                    <td>
+                        @if($personnel->status == 1)
+                          <span class="active">Active</span>
+                        @else
+                          <span class="inactive">Inactive</span>
+                        @endif
+                    </td>
+                    <td>{{ $personnel->created_at }}</td>
+                    <td>{{ $personnel->updated_at }}</td>
+                    <td>
+                        <form action="#" method="POST">
+          
+                            <a class="btn btn-info" href="#">Show</a>
+            
+                            <a class="btn btn-primary" href="#">Edit</a>
+          
+                            <!-- @csrf
+                            @method('DELETE') -->
+
+                            <a class="btn btn-danger" href="#">Delete</a>
+                            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </table>
+            
           </div>
         </div>
 
