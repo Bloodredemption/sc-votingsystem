@@ -156,62 +156,127 @@
       <!--  Header End -->
 
       <div class="container-fluid">
+        <a class="btn btn-success" href="{{ route('admin.personnels.create') }}"> + Create New Personnel</a>
+        <br>
+        <br>
+        @if(session('success'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('success') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold">Admin</h5>
-            <div class="pull-left">
-              <a class="btn btn-success" href="{{ route('admin.personnels.create') }}"> Create New Admin</a>
+            <div class="row">
+              <div class="col d-flex align-items-center">
+                <h5 class="card-title fw-semibold me-3">Admin</h5>
+                
+                </div>
             </div>
             <br>
+            
             <table class="table table-bordered">
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Status</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th width="280px">Action</th>
-                </tr>
-                @foreach ($personnels as $personnel)
-                <tr>
-                    <td>{{ $personnel->name }}</td>
-                    <td>{{ $personnel->username }}</td>
-                    <td>{{ $personnel->password }}</td>
-                    <td>
-                        @if($personnel->status == 1)
-                          <span class="active">Active</span>
-                        @else
-                          <span class="inactive">Inactive</span>
-                        @endif
-                    </td>
-                    <td>{{ $personnel->created_at }}</td>
-                    <td>{{ $personnel->updated_at }}</td>
-                    <td>
-                        <form action="#" method="POST">
-          
-                            <a class="btn btn-info" href="#">Show</a>
-            
-                            <a class="btn btn-primary" href="#">Edit</a>
-          
-                            <!-- @csrf
-                            @method('DELETE') -->
-
-                            <a class="btn btn-danger" href="#">Delete</a>
-                            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+              <tr>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  {{-- <th>Status</th> --}}
+                  <th>Created At</th>
+                  <th>Updated At</th>
+                  <th width="280px">Action</th>
+              </tr>
+              @foreach ($adminPersonnels as $personnel)
+                  @if ($personnel->userType == 'admin')
+                      <tr>
+                          <td>{{ $personnel->name }}</td>
+                          <td>{{ $personnel->username }}</td>
+                          <td>{{ $personnel->password }}</td>
+                          {{-- <td>
+                              @if($personnel->status == 1)
+                                  <span class="active">Active</span>
+                              @else
+                                  <span class="inactive">Inactive</span>
+                              @endif
+                          </td> --}}
+                          <td>{{ $personnel->created_at }}</td>
+                          <td>{{ $personnel->updated_at }}</td>
+                          <td>
+                              <form action="{{ route('personnels.destroy', $personnel->id) }}" method="POST">
+                                <a class="btn btn-info" href="#">Show</a>
+                                <a class="btn btn-primary" href="#">Edit</a>
+                                @csrf
+                                @method('DELETE')
+                                {{-- <a class="btn btn-danger" href="#">Delete</a> --}}
+                                <button id="delete-btn" type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                          </td>
+                      </tr>
+                  @endif
+              @endforeach
             </table>
-            
+            <div class="d-flex justify-content-center flex-wrap">
+              {{ $adminPersonnels->links('pagination::bootstrap-4') }}
+            </div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Facilitator</h5>
-                
+            <div class="row">
+              <div class="col d-flex align-items-center">
+                <h5 class="card-title fw-semibold me-3">Facilitator</h5>
+                {{-- <a class="btn btn-success" href="#"> + Create New Facilitator</a> --}}
+                </div>
+            </div>
+            <br>
+            <table class="table table-bordered">
+              <tr>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  {{-- <th>Status</th> --}}
+                  <th>Created At</th>
+                  <th>Updated At</th>
+                  <th width="280px">Action</th>
+              </tr>
+              @foreach ($facilitatorPersonnels as $personnel)
+                  <tr>
+                      <td>{{ $personnel->name }}</td>
+                      <td>{{ $personnel->username }}</td>
+                      <td>{{ $personnel->password }}</td>
+                      {{-- <td>
+                          @if($personnel->status == 1)
+                              <span class="active">Active</span>
+                          @else
+                              <span class="inactive">Inactive</span>
+                          @endif
+                      </td> --}}
+                      <td>
+                        @if ($personnel->created_at)
+                            {{ $personnel->created_at->format('M d, Y h:i A') }}
+                        @endif
+                      </td>
+                      <td>
+                          @if ($personnel->updated_at)
+                              {{ $personnel->updated_at->format('M d, Y h:i A') }}
+                          @endif
+                      </td>                          
+                      <td>
+                          <form action="{{ route('personnels.destroy', $personnel->id) }}" method="POST">
+                              <a class="btn btn-info" href="#">Show</a>
+                              <a class="btn btn-primary" href="#">Edit</a>
+                              @csrf
+                              @method('DELETE')
+                              {{-- <a class="btn btn-danger" href="#">Delete</a> --}}
+                              <button id="delete-btn" type="submit" class="btn btn-danger">Delete</button>
+                          </form>
+                      </td>
+                  </tr>
+              @endforeach
+            </table>       
+            <div class="d-flex justify-content-center flex-wrap">
+              {{ $facilitatorPersonnels->links('pagination::bootstrap-4') }}
+            </div> 
           </div>
         </div>
       </div>

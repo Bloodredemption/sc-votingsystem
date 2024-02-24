@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personnels;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class PersonnelsController extends Controller
 {
@@ -22,10 +24,10 @@ class PersonnelsController extends Controller
     
     public function index(): View
     {
-        $personnels = Personnels::latest()->paginate(5);
+        $adminPersonnels = Personnels::where('userType', 'admin')->latest()->paginate(5);
+        $facilitatorPersonnels = Personnels::where('userType', 'facilitator')->latest()->paginate(5);
         
-        return view('admin.personnels.index',compact('personnels'))
-                    ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.personnels.index', compact('adminPersonnels', 'facilitatorPersonnels'));
     }
 
     public function votesIndex()
@@ -70,15 +72,25 @@ class PersonnelsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'userType' => 'required',
+        ]);
+        
+        Personnels::create($request->all());
+         
+        return redirect()->route('personnels.index')
+                        ->with('success','Personnel created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Personnels $personnels)
+    public function show(Personnels $personnels): View
     {
         return view('products.show',compact('product'));
     }
@@ -102,9 +114,12 @@ class PersonnelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Personnels $personnels)
+    public function destroy(Personnels $personnel): RedirectResponse
     {
-        //
+        $personnel->delete();
+        
+        return redirect()->route('personnels.index')
+            ->with('success', $personnel->name . ' deleted successfully.');
     }
 
     public function personnelLogin()

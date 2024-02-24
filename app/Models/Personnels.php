@@ -20,8 +20,11 @@ class Personnels extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'username',
         'password',
+        'userType',
+        // 'profileimg',
         // Add any other columns specific to personnel here
     ];
 

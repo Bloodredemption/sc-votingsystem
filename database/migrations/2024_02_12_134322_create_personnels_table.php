@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('userType')->nullable();
             $table->integer('electionID')->nullable();
-            // $table->rememberToken();
+            // $table->string('profileimg')->nullable();
             $table->timestamps();
         });
     }

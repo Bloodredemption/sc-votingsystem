@@ -46,9 +46,10 @@ Route::get('/', function () {
     Route::get('/admin/reports', [PersonnelsController::class, 'reportsIndex'])->name('personnels.reports');
     Route::get('/admin/about', [PersonnelsController::class, 'aboutIndex'])->name('personnels.about');
     
-    
 // Route::post('/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
 Route::match(['get', 'post'], '/personnel/logout', [PersonnelsController::class, 'logout'])->name('personnel.logout');
 
 // Route::resource('personnels', PersonnelsController::class);
 Route::get('/admin/personnels/create', [PersonnelsController::class, 'create'])->name('admin.personnels.create');
+Route::post('/admin/personnels/store', [PersonnelsController::class, 'store'])->name('admin.personnels.store');
+Route::delete('/admin/personnels/destroy/{personnel}', [PersonnelsController::class, 'destroy'])->name('personnels.destroy');
