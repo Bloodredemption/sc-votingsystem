@@ -10,7 +10,8 @@
   {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
   <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
   <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">  
-  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
   <style>
     
   </style>
@@ -161,65 +162,46 @@
                     
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            <h5 class="card-title fw-semibold me-3"><i class="ti ti-user"></i> Create Personnel Account</h5>
+                            <h5 class="card-title fw-semibold me-3"><i class="ti ti-user"></i> Personnel Information</h5>
                             <a href="{{ route('personnels.index') }}">← Back</a>
                         </div>
                     </div>
                     <br>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Name:</strong>
+                                {{ $personnel->name }}
+                            </div>
                         </div>
-                    @endif
-                     
-                    <form action="{{ route('admin.personnels.store') }}" method="POST">
-                        @csrf
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Username:</strong>
+                                {{ $personnel->username }}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Password:</strong>
+                                {{ $personnel->password }}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Usertype:</strong>
+                                {{ $personnel->userType }}
+                            </div>
+                        </div>
+                        <br><br>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group ">
-                                    <strong>Name:</strong>
-                                    <input type="text" name="name" class="form-control" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
-                                <div class="form-group">
-                                    <strong>Username:</strong>
-                                    <input type="text" name="username" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
-                                <div class="form-group">
-                                    <strong>Password:</strong>
-                                    <input type="text" name="password" class="form-control" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
-                                <div class="form-group">
-                                    <strong>User Type:</strong>
-                                    <select name="userType" class="form-control">
-                                        <option>Select ...</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="facilitator">Facilitator</option>
-                                    </select>
-                                </div>
+                            <div class="col d-flex align-items-center">
+                                <a href="{{ route('personnels.edit',$personnel->id) }}" class="mr-2"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="{{ route('personnels.index') }}"><i class="fas fa-trash-alt"></i> Delete</a>
                             </div>                            
-                            {{-- <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
-                                <div class="form-group">
-                                    <strong>Image:</strong>
-                                    <input type="file" name="profileimg" class="form-control" accept="image/*">
-                                </div>
-                            </div> --}}
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <br>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
                         </div>
-                    </form>
+                        
+                    </div>
                 </div>
             </div>
         </div>

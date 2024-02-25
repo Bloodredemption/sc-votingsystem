@@ -202,8 +202,8 @@
                           <td>{{ $personnel->updated_at }}</td>
                           <td>
                               <form action="{{ route('personnels.destroy', $personnel->id) }}" method="POST">
-                                <a class="btn btn-info" href="#">Show</a>
-                                <a class="btn btn-primary" href="#">Edit</a>
+                                <a class="btn btn-info" href="{{ route('personnels.show',$personnel->id) }}">Show</a>
+                                <a class="btn btn-primary" href="{{ route('personnels.edit',$personnel->id) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 {{-- <a class="btn btn-danger" href="#">Delete</a> --}}
@@ -264,7 +264,7 @@
                       <td>
                           <form action="{{ route('personnels.destroy', $personnel->id) }}" method="POST">
                               <a class="btn btn-info" href="#">Show</a>
-                              <a class="btn btn-primary" href="#">Edit</a>
+                              <a class="btn btn-primary" href="{{ route('personnels.edit',$personnel->id) }}">Edit</a>
                               @csrf
                               @method('DELETE')
                               {{-- <a class="btn btn-danger" href="#">Delete</a> --}}

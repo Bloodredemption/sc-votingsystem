@@ -161,7 +161,7 @@
                     
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            <h5 class="card-title fw-semibold me-3"><i class="ti ti-user"></i> Create Personnel Account</h5>
+                            <h5 class="card-title fw-semibold me-3"><i class="ti ti-user"></i> Edit Personnel Account</h5>
                             <a href="{{ route('personnels.index') }}">← Back</a>
                         </div>
                     </div>
@@ -176,35 +176,41 @@
                             </ul>
                         </div>
                     @endif
-                     
-                    <form action="{{ route('admin.personnels.store') }}" method="POST">
+                    
+                    <form action="{{ route('personnels.update',$personnel->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
+
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group ">
                                     <strong>Name:</strong>
-                                    <input type="text" name="name" class="form-control" placeholder="Name">
+                                    <input type="text" name="name" class="form-control" value="{{ $personnel->name }}" placeholder="Name">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
                                 <div class="form-group">
                                     <strong>Username:</strong>
-                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                    <input type="text" name="username" class="form-control" value="{{ $personnel->username }}" placeholder="Username">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
                                 <div class="form-group">
                                     <strong>Password:</strong>
-                                    <input type="text" name="password" class="form-control" placeholder="Password">
+                                    <input type="text" name="password" class="form-control" value="{{ $personnel->password }}" placeholder="Password">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6"> <!-- Half the width for each input field -->
                                 <div class="form-group">
                                     <strong>User Type:</strong>
                                     <select name="userType" class="form-control">
-                                        <option>Select ...</option>
-                                        <option value="admin">Admin</option>
+                                        {{-- <option>Select ...</option> --}}
+                                        <option value="{{ $personnel->userType }}">{{ $personnel->userType }}</option>
+                                    @if ($personnel->userType == 'admin')
                                         <option value="facilitator">Facilitator</option>
+                                    @else
+                                        <option value="admin">Admin</option>
+                                    @endif
                                     </select>
                                 </div>
                             </div>                            

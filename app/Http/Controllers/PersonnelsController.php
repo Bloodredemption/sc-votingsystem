@@ -22,12 +22,21 @@ class PersonnelsController extends Controller
         
     // }
     
-    public function index(): View
+    public function index()
     {
         $adminPersonnels = Personnels::where('userType', 'admin')->latest()->paginate(5);
         $facilitatorPersonnels = Personnels::where('userType', 'facilitator')->latest()->paginate(5);
         
-        return view('admin.personnels.index', compact('adminPersonnels', 'facilitatorPersonnels'));
+        // return view('admin.personnels.index', compact('adminPersonnels', 'facilitatorPersonnels'));
+
+        if (session()->has('fullName')) {
+            return view('admin.personnels.index', compact('adminPersonnels', 'facilitatorPersonnels'));
+        }
+
+        return redirect()->route('personnel.login')
+            ->withErrors([
+                'username' => 'Please login to access.',
+            ])->withInput(['username' => request()->input('username'), 'password' => request()->input('password')]);
     }
 
     public function votesIndex()
@@ -90,25 +99,35 @@ class PersonnelsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Personnels $personnels): View
+    public function show(Personnels $personnel): View
     {
-        return view('products.show',compact('product'));
+        return view('admin.personnels.show',compact('personnel'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Personnels $personnels)
+    public function edit(Personnels $personnel): View
     {
-        //
+        return view('admin.personnels.edit',compact('personnel'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Personnels $personnels)
+    public function update(Request $request, Personnels $personnel): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'userType' => 'required',
+        ]);
+
+        $personnel->update($request->all());
+
+        return redirect()->route('personnels.index')
+                        ->with('success','Personnel updated successfully');
     }
 
     /**

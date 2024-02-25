@@ -53,3 +53,6 @@ Route::match(['get', 'post'], '/personnel/logout', [PersonnelsController::class,
 Route::get('/admin/personnels/create', [PersonnelsController::class, 'create'])->name('admin.personnels.create');
 Route::post('/admin/personnels/store', [PersonnelsController::class, 'store'])->name('admin.personnels.store');
 Route::delete('/admin/personnels/destroy/{personnel}', [PersonnelsController::class, 'destroy'])->name('personnels.destroy');
+Route::get('/admin/personnels/edit/{personnel}', [PersonnelsController::class, 'edit'])->name('personnels.edit');
+Route::put('/admin/personnels/update/{personnel}', [PersonnelsController::class, 'update'])->name('personnels.update');
+Route::get('/admin/personnels/show/{personnel}', [PersonnelsController::class, 'show'])->name('personnels.show');
