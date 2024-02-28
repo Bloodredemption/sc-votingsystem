@@ -172,7 +172,7 @@ class PersonnelsController extends Controller
                     return redirect()->route('personnel.admin.dashboard');
                 } elseif ($personnel->userType === 'facilitator') {
                     // User is a facilitator, redirect to facilitator dashboard
-                    return redirect()->route('personnel.facilitator.dashboard');
+                    return redirect()->route('personnel.faci.dashboard');
                 }
             }
         }
@@ -208,7 +208,7 @@ class PersonnelsController extends Controller
     public function facilitatorDashboard()
     {
         if (session()->has('fullName')) {
-            return view('personnel.facilitator.dashboard');
+            return view('facilitator.dashboard.dashboard');
         }
 
         return redirect()->route('personnel.login')

@@ -111,7 +111,7 @@
             </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            @include('auth.personnel.profile')
+            @include('facilitator.profile')
           </div>
         </nav>
       </header>
@@ -136,7 +136,7 @@
 
     </div>
   </div>
-  @include('auth.personnel.scripts')
+  @include('facilitator.scripts')
 </body>
 
 </html>
