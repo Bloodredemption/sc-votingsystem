@@ -73,7 +73,7 @@
                 <span class="hide-menu">Manage</span>
                 </li>
                 <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('personnels.election') }}" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('election.index') }}" aria-expanded="false">
                     <span>
                     <i class="ti ti-circle-check"></i>
                     </span>

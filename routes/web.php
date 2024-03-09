@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\PersonnelsController;
+use App\Http\Controllers\ElectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::get('/', function () {
 
     Route::get('/admin/votes', [PersonnelsController::class, 'votesIndex'])->name('personnels.votes');
     Route::get('/admin/personnels', 'App\Http\Controllers\PersonnelsController@index')->name('personnels.index');
-    Route::get('/admin/election', [PersonnelsController::class, 'electionIndex'])->name('personnels.election');
+    Route::get('/admin/election', 'App\Http\Controllers\ElectionController@index')->name('election.index');
     Route::get('/admin/voters', [PersonnelsController::class, 'votersIndex'])->name('personnels.voters');
     Route::get('/admin/candidates', [PersonnelsController::class, 'candidatesIndex'])->name('personnels.candidates');
     Route::get('/admin/reports', [PersonnelsController::class, 'reportsIndex'])->name('personnels.reports');
@@ -56,3 +57,6 @@ Route::delete('/admin/personnels/destroy/{personnel}', [PersonnelsController::cl
 Route::get('/admin/personnels/edit/{personnel}', [PersonnelsController::class, 'edit'])->name('personnels.edit');
 Route::put('/admin/personnels/update/{personnel}', [PersonnelsController::class, 'update'])->name('personnels.update');
 Route::get('/admin/personnels/show/{personnel}', [PersonnelsController::class, 'show'])->name('personnels.show');
+
+Route::get('/admin/election/create', [ElectionController::class, 'create'])->name('admin.election.create');
+Route::post('/admin/election/store', [ElectionController::class, 'store'])->name('admin.election.store');

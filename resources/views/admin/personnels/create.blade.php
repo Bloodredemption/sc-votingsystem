@@ -73,7 +73,7 @@
                 <span class="hide-menu">Manage</span>
                 </li>
                 <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('personnels.election') }}" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('election.index') }}" aria-expanded="false">
                     <span>
                     <i class="ti ti-circle-check"></i>
                     </span>
@@ -155,7 +155,7 @@
         </header>
         <!--  Header End -->
 
-        <div class="container-fluid">
+        <div class="container-fluid" style="max-width: 100% !important;">
             <div class="card">
                 <div class="card-body">
                     

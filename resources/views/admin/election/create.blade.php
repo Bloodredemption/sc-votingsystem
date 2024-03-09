@@ -10,8 +10,7 @@
   {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
   <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
   <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+  
   <style>
     
   </style>
@@ -74,7 +73,7 @@
                 <span class="hide-menu">Manage</span>
                 </li>
                 <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('election.index') }}" aria-expanded="false">
+                <a class="sidebar-link active" href="{{ route('election.index') }}" aria-expanded="false">
                     <span>
                     <i class="ti ti-circle-check"></i>
                     </span>
@@ -99,7 +98,7 @@
                 </li>
                 
                 <li class="sidebar-item">
-                <a class="sidebar-link active" href="{{ route('personnels.index') }}" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('personnels.index') }}" aria-expanded="false">
                     <span>
                     <i class="ti ti-user-circle"></i>
                     </span>
@@ -146,7 +145,7 @@
                 </li>
                 <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                <span class="hide-menu">System / Personnels</span>
+                <span class="hide-menu">System / Election</span>
                 </li>
             </ul>
             <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -156,52 +155,106 @@
         </header>
         <!--  Header End -->
 
-        <div class="container-fluid">
+        <div class="container-fluid" style="max-width: 100% !important;">
             <div class="card">
                 <div class="card-body">
                     
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            <h5 class="card-title fw-semibold me-3"><i class="ti ti-user"></i> Personnel Information</h5>
-                            <a href="{{ route('personnels.index') }}">← Back</a>
+                            <h5 class="card-title fw-semibold me-3"><i class="ti ti-user"></i> Create Election</h5>
+                            <a href="{{ route('election.index') }}">← Back</a>
                         </div>
                     </div>
                     <br>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Name:</strong>
-                                {{ $personnel->name }}
-                            </div>
+                    <!-- @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Username:</strong>
-                                {{ $personnel->username }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Password:</strong>
-                                {{ $personnel->password }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Usertype:</strong>
-                                {{ $personnel->userType }}
-                            </div>
-                        </div>
-                        <br><br>
+                    @endif -->
+                     
+                    <form action="{{ route('admin.election.store') }}" method="POST">
+                        @csrf
                         <div class="row">
-                            <div class="col d-flex align-items-center">
-                                <a href="{{ route('personnels.edit',$personnel->id) }}" class="mr-2"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="{{ route('personnels.index') }}"><i class="fas fa-trash-alt"></i> Delete</a>
-                            </div>                            
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group ">
+                                    <strong>Election Title:</strong>
+                                    <input type="text" name="electionTitle" class="form-control" placeholder="Title" required>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <strong>School Year:</strong>
+                                    <input type="number" name="schoolyear" class="form-control" placeholder="Year" required>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <strong>Department:</strong>
+                                    <select name="department" class="form-control">
+                                        <option>Select ...</option>
+                                        <option value="BED">Basic Education Department</option>
+                                        <option value="HED">Higher Education Department</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <strong>Start Date:</strong>
+                                    <input class="form-control" type="date" id="startDate" name="startDate" required/>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <strong>End Date:</strong>
+                                    <input class="form-control" type="date" id="endDate" name="endDate" required/>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-md-6" hidden>
+                                <div class="form-group">
+                                    <strong>Status:</strong>
+                                    <select name="status" class="form-control">
+                                        <option value="Active">Active</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-md-6" hidden>
+                                <div class="form-group">
+                                    <strong>Logged In Admin</strong>
+                                    <select name="personnelid" class="form-control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
-                        
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

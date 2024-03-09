@@ -73,7 +73,7 @@
               <span class="hide-menu">Manage</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ route('personnels.election') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('election.index') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-circle-check"></i>
                 </span>
@@ -154,8 +154,8 @@
         </nav>
       </header>
       <!--  Header End -->
-
-      <div class="container-fluid">
+    
+      <div class="container-fluid" style="max-width: 100% !important;"> 
         <a class="btn btn-success" href="{{ route('admin.personnels.create') }}"> + Create New Personnel</a>
         <br>
         <br>
@@ -165,13 +165,14 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         @endif
+        
         <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col d-flex align-items-center">
                 <h5 class="card-title fw-semibold me-3">Admin</h5>
                 
-                </div>
+              </div>
             </div>
             <br>
             
